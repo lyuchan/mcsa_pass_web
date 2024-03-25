@@ -7,6 +7,7 @@
 <body>
     <div id="qr-reader" style="width:500px"></div>
     <div id="qr-reader-results"></div>
+
 </body>
 <script>
     var resultContainer = document.getElementById('qr-reader-results');
@@ -18,6 +19,7 @@
             lastResult = decodedText;
             // Handle on success condition with the decoded message.
             console.log(`Scan result ${decodedText}`, decodedResult);
+            resultContainer.innerHTML = decodedText
         }
     }
 

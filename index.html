@@ -35,13 +35,40 @@
             lastResult = decodedText;
             // Handle on success condition with the decoded message.
             console.log(`Scan result ${decodedText}`, decodedResult);
-            resultContainer.innerHTML = decodedText
+            resultContainer.innerHTML = fetchData(decodedText)
+
+
         }
     }
 
     var html5QrcodeScanner = new Html5QrcodeScanner(
         "qr-reader", { fps: 10, qrbox: windowWidth * 0.7 });
     html5QrcodeScanner.render(onScanSuccess);
+    function fetchData(data) {
+        // 組合 URL
+        const url = `https://pass.mcsa.tw/api_check.php?code=${data}`;
+
+        // 使用 Fetch API 發送 GET 請求
+        fetch(url)
+            .then(response => {
+                // 檢查響應是否成功
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // 將回應解析為 JSON
+                return response.json();
+            })
+            .then(data => {
+                // 處理 JSON 資料
+                console.log(data);
+                // 在這裡進行其他操作，比如更新網頁上的內容
+            })
+            .catch(error => {
+                // 捕獲錯誤並進行處理
+                console.error('There was a problem with your fetch operation:', error);
+            });
+    }
+
 </script>
 </head>
 

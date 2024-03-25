@@ -56,13 +56,11 @@
                     throw new Error('Network response was not ok');
                 }
                 // 將回應解析為 JSON
-                
                 return response.json();
             })
             .then(data => {
                 // 處理 JSON 資料
                 console.log(data);
-                resultContainer.innerHTML = data
                 // 在這裡進行其他操作，比如更新網頁上的內容
             })
             .catch(error => {
@@ -70,6 +68,7 @@
                 console.error('There was a problem with your fetch operation:', error);
             });
     }
+
 
 </script>
 </head>

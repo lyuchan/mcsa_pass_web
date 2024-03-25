@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>QR-Code掃瞄器</title>
+    <title>演唱會QR-Code掃瞄器</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -66,7 +66,7 @@
                 console.log(data);
                 // let res = JSON.parse(data)
                 // 假设您有一个包含状态的对象
-                var response = JSON.parse(data)
+                var response = data
 
                 // 判断状态
                 if (response.hasOwnProperty("error")) {

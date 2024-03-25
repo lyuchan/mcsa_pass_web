@@ -3,6 +3,9 @@
 <head>
     <title>Html-Qrcode Demo</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./src/sweetalert2.min.css">
 
 <body>
     <div id="qr-reader" style="width:100%"></div>
@@ -61,6 +64,39 @@
             .then(data => {
                 // 處理 JSON 資料
                 console.log(data);
+                // let res = JSON.parse(data)
+                // 假设您有一个包含状态的对象
+                var response = JSON.parse(data)
+
+                // 判断状态
+                if (response.hasOwnProperty("error")) {
+                    if (response.error === "code") {
+                        Swal.fire({
+                            title: "錯誤",
+                            text: "未知的QR-Code",
+                            icon: "error"
+                        });
+                    } else if (response.error === "expired") {
+                        Swal.fire({
+                            title: "錯誤",
+                            text: "QR-Code已過期",
+                            icon: "error"
+                        });
+                    }
+                } else if (response.hasOwnProperty("stuid")) {
+                    Swal.fire({
+                        title: "成功",
+                        text: `學號為：${response.stuid}`,
+                        icon: "error"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "錯誤",
+                        text: "伺服器錯誤",
+                        icon: "error"
+                    });
+                }
+
                 // 在這裡進行其他操作，比如更新網頁上的內容
             })
             .catch(error => {

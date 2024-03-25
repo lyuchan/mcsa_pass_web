@@ -49,7 +49,7 @@
     html5QrcodeScanner.render(onScanSuccess);
     function fetchData(data) {
         // 組合 URL
-        const url = `https://pass.mcsa.tw/api_check.php?code=${data}`;
+        const url = `https://pass.mcsa.tw/api_check.php?code=${encodeURIComponent(data)}`;
 
         // 使用 Fetch API 發送 GET 請求
         fetch(url)

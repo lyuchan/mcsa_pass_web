@@ -9,12 +9,27 @@
     <div id="qr-reader-results"></div>
 
 </body>
+<style>
+    button {
+        font-size: 60px;
+
+    }
+
+    img {
+        width: 50%;
+        height: 50%;
+    }
+</style>
 <script>
     var resultContainer = document.getElementById('qr-reader-results');
     var lastResult, countResults = 0;
     var windowWidth = window.innerWidth;
-
+    setTimeout(() => {
+        document.getElementById("html5-qrcode-button-camera-permission").innerHTML = "按我開始掃描";
+        document.getElementById("html5-qrcode-anchor-scan-type-change").style = "display:none;";
+    }, 20)
     function onScanSuccess(decodedText, decodedResult) {
+
         if (decodedText !== lastResult) {
             ++countResults;
             lastResult = decodedText;
@@ -25,7 +40,7 @@
     }
 
     var html5QrcodeScanner = new Html5QrcodeScanner(
-        "qr-reader", { fps: 10, qrbox: windowWidth*0.7 });
+        "qr-reader", { fps: 10, qrbox: windowWidth * 0.7 });
     html5QrcodeScanner.render(onScanSuccess);
 </script>
 </head>
